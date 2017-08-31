@@ -1,0 +1,40 @@
+version: '2'
+
+services:
+  cassandra:
+    image: cassandra:2.2.6
+    container_name: kong-database
+    restart: always
+    ports:
+      - 9042:9042
+  testsite:
+    image: itestsite
+    container_name: testsite
+    restart: always
+    ports:
+      - 3000:3000
+  kong:
+    image: pxkong
+    container_name: kong
+    restart: always
+    ports:
+      - 8000:8000
+      - 8001:8001
+      - 8443:8443
+      - 7946:7946
+      - 7946:7946/udp
+    volumes:
+      - ./kong/config:/etc/kong/
+      - ./kong/plugins:/plugins
+    links:
+        - cassandra:kong-database
+        - testsite
+    environment:
+        - KONG_DATABASE=cassandra
+        - KONG_CASSANDRA_CONTACT_POINTS=kong-database
+        - KONG_CUSTOM_PLUGINS=perimeterx
+    security_opt:
+      - label:seccomp:unconfined
+    depends_on:
+      - cassandra
+      - testsite
