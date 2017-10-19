@@ -25,6 +25,7 @@ Table of Contents
     *   [Send Page Activities](#send-page-activities)
     *   [Debug Mode](#debug-mode)
     *   [Custom Block Page](#customblockpage)    
+    *   [API Protection Mode](#api-protection)
     *   [Multiple App Support](#multipleapps)
     *   [Additional Activity Handler](#add-activity-handler)
     *   [Whitelisting](#whitelisting)
@@ -289,6 +290,33 @@ Users can customize the blocking page to meet their branding and message require
 
 > Note: This URI has to be whitelisted under `config.whitelist.uri_full` to avoid infinite redirects.
 
+
+#### <a name="api-protection"></a> API Protection Mode
+For the case where kong is used for API calls and not serving HTML pages, users can set the plugin into API protection mode.
+
+In this mode, when the system decides to block a request, instead of rendering an HTML block/captcha page, it will return a JSON object
+that contains a URL for optional redirect on the user's client side.
+
+The end user can be redirected this way to a custom captcha page, and after solving the captcha challenge, will be redirected back to the page they came from or to a default location.
+
+##### Note
+When setting the configuration of `api_protection_mode` to `true`, users must also set `api_protection_block_url` which is the address of the custom block page,
+and api_protection_default_redirect_url which is the default location for redirect after solving captcha.
+
+Example:
+```bash
+--data 'config.api_protection_mode=true'
+--data 'config.api_protection_block_url=http://www.example.com/block.html'
+--data 'config.api_protection_default_redirect_url=http://www.example.com/home.html'
+```
+
+Response may look like:
+```json
+{
+  "reason": "blocked",
+  "redirect_to": "http://www.example.com/block.html?url=aHR0cDovL2xvY2FsaG9zdDo4MDAwLz9nZmQ9ZmdkZmc=&uuid=11a12b80-b40c-11e7-8050-eb8403f523e5&vid=ef77a690-9bc8-11e7-9c31-970ffdcc0e6d"
+}
+```
 
 #### <a name="redirect_on_custom_url"></a> Redirect on Custom URL
 The `_M.redirect_on_custom_url` flag provides 2 options for redirecting users to a block page.

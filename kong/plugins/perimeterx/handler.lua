@@ -4,7 +4,7 @@ local pxconfig = require("px.pxconfig")
 local pxtimer = require("px.utils.pxtimer")
 local pxconstants = require("px.utils.pxconstants")
 local px = require("px.pxnginx")
-local MODULE_VERSION = 'Kong Plugin v1.0.0'
+local MODULE_VERSION = 'Kong Plugin v1.1.0'
 
 function PXHandler:new()
     PXHandler.super.new(self, "perimeterx-plugin")

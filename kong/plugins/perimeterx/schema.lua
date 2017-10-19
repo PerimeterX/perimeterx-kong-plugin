@@ -22,6 +22,9 @@ return {
         enabled_routes = {type = "array", default = {}},
 
         custom_block_url = {type = "string"},
+        api_protection_mode = {type = "boolean", default = false},
+        api_protection_block_url = {type = "string"},
+        api_protection_default_redirect_url = {type = "string"},
         redirect_on_custom_url = {type = "boolean", default = false},
         custom_logo = {type = "string"},
         css_ref = {type = "string"},
@@ -61,6 +64,11 @@ return {
         if config.custom_block_url ~= nil then -- verify custom_block_url is in uri_full
             if config.whitelist == nil or config.whitelist.uri_full == nil or array_index_of(config.whitelist.uri_full, config.custom_block_url) == -1 then
                 return false, Errors.schema "custom_block_url value must be a member of whitelist.uri_full array"
+            end
+        end
+        if config.api_protection_mode then
+            if config.api_protection_block_url == nil or config.api_protection_block_url == '' or config.api_protection_default_redirect_url == nil or config.api_protection_default_redirect_url == '' then
+                return false, Errors.schema "API protection mode requires setting values for api_protection_block_url and api_protection_default_redirect_url"
             end
         end
         return true
