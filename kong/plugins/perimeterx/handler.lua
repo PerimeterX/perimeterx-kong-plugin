@@ -32,3 +32,4 @@ function PXHandler:access(config)
 end
 
 return PXHandler
+
