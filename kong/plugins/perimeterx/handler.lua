@@ -4,7 +4,7 @@ local pxconfig = require("px.pxconfig")
 local pxtimer = require("px.utils.pxtimer")
 local pxconstants = require("px.utils.pxconstants")
 local px = require("px.pxnginx")
-local MODULE_VERSION = 'Kong Plugin v1.2.0'
+local MODULE_VERSION = 'Kong Plugin v1.3.0'
 local ngx_now = ngx.now
 
 function PXHandler:new()
@@ -32,3 +32,4 @@ function PXHandler:access(config)
 end
 
 return PXHandler
+
