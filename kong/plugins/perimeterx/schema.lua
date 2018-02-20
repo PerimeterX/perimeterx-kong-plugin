@@ -20,7 +20,7 @@ return {
         sensitive_routes_suffix = {type = "array", default = {}},
         captcha_provider = {type = "string", default = "reCaptcha", enum = {"reCaptcha", "funCaptcha"}},
         enabled_routes = {type = "array", default = {}},
-        first_party_enabled = {type = "boolean", default = false},
+        first_party_enabled = {type = "boolean", default = true},
         reverse_xhr_enabled = {type = "boolean", default = true},
 
         custom_block_url = {type = "string"},
