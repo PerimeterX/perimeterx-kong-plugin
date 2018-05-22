@@ -25,6 +25,7 @@ function PXHandler:access(config)
     local ngx_ctx = ngx.ctx
     ngx_ctx.KONG_HEADER_FILTER_STARTED_AT = get_now()
     PXHandler.super.access(self)
+    config.additional_activity_handler = pxconfig.additional_activity_handler
     px.application(config)
 end
 
