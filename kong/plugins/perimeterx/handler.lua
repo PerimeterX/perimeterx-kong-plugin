@@ -18,17 +18,14 @@ end
 function PXHandler:init_worker(config)
     PXHandler.super.init_worker(self)
     pxconstants.MODULE_VERSION = MODULE_VERSION
-    pxtimer.application()
+    pxtimer.application(pxconfig)
 end
 
 function PXHandler:access(config)
     local ngx_ctx = ngx.ctx
     ngx_ctx.KONG_HEADER_FILTER_STARTED_AT = get_now()
     PXHandler.super.access(self)
-    for key,value in pairs(config) do
-        pxconfig[key] = value
-    end
-    px.application()
+    px.application(config)
 end
 
 return PXHandler
