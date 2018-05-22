@@ -470,7 +470,7 @@ function PXHandler:init_worker(config)
     PXHandler.super.init_worker(self)
     ...
     --add function to pxconfig here
-    pxconfig.additional_activity_handler = additional_activity_handler
+    config.additional_activity_handler = additional_activity_handler
 end
 ```
 
@@ -481,22 +481,20 @@ Whitelisting (bypassing enforcement) is configured under in the `whitelist` tabl
 There are several different types of filters that can be configured.
 
 ```
-whitelist = {
-	uri_full = { custom_block_url },
-	uri_prefixes = {},
-	uri_suffixes = {'.css', '.bmp', '.tif', '.ttf', '.docx', '.woff2', '.js', '.pict', '.tiff', '.eot', '.xlsx', '.jpg', '.csv', '.eps', '.woff', '.xls', '.jpeg', '.doc', '.ejs', '.otf', '.pptx', '.gif', '.pdf', '.swf', '.svg', '.ps', '.ico', '.pls', '.midi', '.svgz', '.class', '.png', '.ppt', '.mid', 'webp', '.jar'},
-	ip_addresses = {},
-	ua_full = {},
-	ua_sub = {}
-}
+whitelist_uri_full = { _M.custom_block_url },
+whitelist_uri_prefixes = {},
+whitelist_uri_suffixes = {'.css', '.bmp', '.tif', '.ttf', '.docx', '.woff2', '.js', '.pict', '.tiff', '.eot', '.xlsx', '.jpg', '.csv', '.eps', '.woff', '.xls', '.jpeg', '.doc', '.ejs', '.otf', '.pptx', '.gif', '.pdf', '.swf', '.svg', '.ps', '.ico', '.pls', '.midi', '.svgz', '.class', '.png', '.ppt', '.mid', 'webp', '.jar'},
+whitelist_ip_addresses = {},
+whitelist_ua_full = {},
+whitelist_ua_sub = {}
 ```
 
-- **uri_full** : for value `{'/api_server_full'}` - will filter requests to `/api_server_full?data=1` but not to `/api_server?data=1`
-- **uri_prefixes** : for value `{'/api_server'}` - will filter requests to `/api_server_full?data=1` but not to `/full_api_server?data=1` 
-- **uri_suffixes** : for value `{'.css'}` - will filter requests to `/style.css` but not to `/style.js`
-- **ip_addresses** : for value `{'192.168.99.1'}` - will filter requests coming from any of the listed ips.
-- **ua_full** : for value `{'Mozilla/5.0 (compatible; pingbot/2.0;  http://www.pingdom.com/)'}` - will filter all requests matching this exact UA. 
-- **ua_sub** : for value `{'GoogleCloudMonitoring'}` - will filter requests containing the provided string in their UA.
+- **whitelist_uri_full** : for value `{'/api_server_full'}` - will filter requests to `/api_server_full?data=1` but not to `/api_server?data=1`
+- **whitelist_uri_prefixes** : for value `{'/api_server'}` - will filter requests to `/api_server_full?data=1` but not to `/full_api_server?data=1` 
+- **whitelist_uri_suffixes** : for value `{'.css'}` - will filter requests to `/style.css` but not to `/style.js`
+- **whitelist_ip_addresses** : for value `{'192.168.99.1'}` - will filter requests coming from any of the listed ips.
+- **whitelist_ua_full** : for value `{'Mozilla/5.0 (compatible; pingbot/2.0;  http://www.pingdom.com/)'}` - will filter all requests matching this exact UA. 
+- **whitelist_ua_sub** : for value `{'GoogleCloudMonitoring'}` - will filter requests containing the provided string in their UA.
 
 
 <a name="contributing"></a> Contributing
