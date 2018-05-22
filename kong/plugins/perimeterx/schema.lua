@@ -35,18 +35,12 @@ return {
 
         -- ## Filter Configuration ##
 
-        whitelist = {type = "table", required = true,
-            schema = {
-                fields = {
-                    uri_full = {type = "array", default = {}}, -- custom_block_url value should be a member of this array
-                    uri_prefixes = {type = "array", default = {}},
-                    uri_suffixes = {type = "array", default = { '.css', '.bmp', '.tif', '.ttf', '.docx', '.woff2', '.js', '.pict', '.tiff', '.eot', '.xlsx', '.jpg', '.csv', '.eps', '.woff', '.xls', '.jpeg', '.doc', '.ejs', '.otf', '.pptx', '.gif', '.pdf', '.swf', '.svg', '.ps', '.ico', '.pls', '.midi', '.svgz', '.class', '.png', '.ppt', '.mid', 'webp', '.jar' }},
-                    ip_addresses = {type = "array", default = {}},
-                    ua_full = {type = "array", default = {}},
-                    ua_sub = {type = "array", default = {}}
-                }
-            }
-        }
+        whitelist_uri_full = {type = "array", default = {}}, -- custom_block_url value should be a member of this array
+        whitelist_uri_prefixes = {type = "array", default = {}},
+        whitelist_uri_suffixes = {type = "array", default = { '.css', '.bmp', '.tif', '.ttf', '.docx', '.woff2', '.js', '.pict', '.tiff', '.eot', '.xlsx', '.jpg', '.csv', '.eps', '.woff', '.xls', '.jpeg', '.doc', '.ejs', '.otf', '.pptx', '.gif', '.pdf', '.swf', '.svg', '.ps', '.ico', '.pls', '.midi', '.svgz', '.class', '.png', '.ppt', '.mid', 'webp', '.jar' }},
+        whitelist_ip_addresses = {type = "array", default = {}},
+        whitelist_ua_full = {type = "array", default = {}},
+        whitelist_ua_sub = {type = "array", default = {}}
     },
     self_check = function(schema, plugin_t, dao, is_updating)
         -- perform any custom verification
