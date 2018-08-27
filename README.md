@@ -182,11 +182,10 @@ By enabling CAPTCHA support, a CAPTCHA will be served as part of the block page,
 
 The CAPTCHA part of the block page can use one of the following:
 * [reCAPTCHA](https://www.google.com/recaptcha)
-* [FunCaptcha](https://www.funcaptcha.com/)
 
 **Default: 'reCaptcha'**
 ```bash
---data 'config.captcha_provider=funCaptcha'
+--data 'config.captcha_provider=reCaptcha'
 ```
 
 #### <a name="enabled-routes"></a> Enabled Routes
