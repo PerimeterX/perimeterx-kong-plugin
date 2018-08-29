@@ -16,7 +16,6 @@ Table of Contents
     *   [Blocking Score](#blocking-score)
     *   [Monitoring mode](#monitoring-mode)
     *   [Enable/Disable Captcha](#captcha-support)
-    *   [Select Captcha Provider](#captcha-provider)
     *   [Enabled Routes](#enabled-routes)
     *   [Sensitive Routes](#sensitive-routes)
     *   [Extracting Real IP Address](#real-ip)
@@ -177,17 +176,6 @@ By enabling CAPTCHA support, a CAPTCHA will be served as part of the block page,
 --data 'config.captcha_enabled=false'
 ```
 
-
-#### <a name="captcha-provider"></a>Select CAPTCHA Provider
-
-The CAPTCHA part of the block page can use one of the following:
-* [reCAPTCHA](https://www.google.com/recaptcha)
-* [FunCaptcha](https://www.funcaptcha.com/)
-
-**Default: 'reCaptcha'**
-```bash
---data 'config.captcha_provider=funCaptcha'
-```
 
 #### <a name="enabled-routes"></a> Enabled Routes
 
