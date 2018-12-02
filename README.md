@@ -12,6 +12,7 @@ Table of Contents
     *   [Installation](#installation)
     *   [Installing on Amazon Linux](#awsinstall)
     *   [Basic Usage Example](#basic-usage)
+-   [Upgrading](*upgrade)    
 -   [Configuration](#configuration)
     *   [Blocking Score](#blocking-score)
     *   [Monitoring mode](#monitoring-mode)
@@ -131,6 +132,9 @@ curl -i -X POST \
 ```
 You can find your app ID, authentication token, and cookie key under your account's admin section in [PerimeterX Portal](https://console.perimeterx.com)
 
+## <a name="upgrade"></a> Upgrading
+
+TBD
 
 ### <a name="configuration"></a> Configuration Options
 
