@@ -134,7 +134,7 @@ You can find your app ID, authentication token, and cookie key under your accoun
 
 ## <a name="upgrade"></a> Upgrading
 
-TBD
+Contact [PerimeterX Support](support@perimeterx.com) for more details.
 
 ### <a name="configuration"></a> Configuration Options
 
