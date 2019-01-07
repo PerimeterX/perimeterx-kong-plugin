@@ -160,7 +160,7 @@ Configuration options are set via Kong's admin API, as config parameter.
   The following routes must be enabled for First-Party Mode for the PerimeterX Kong plugin:  
     - `/<PX_APP_ID without PX prefix>/xhr/*`  
     - `/<PX_APP_ID without PX prefix>/init.js`  
-    - `/<PX_APP_ID without PX prefix>/captcha`  
+    - `/<PX_APP_ID without PX prefix>/captcha/*`  
 
   - If the PerimeterX Kong module is enabled on `location /`, the routes are already open and no action is necessary.
 
@@ -360,47 +360,18 @@ http://www.example.com/block.html?url=L3NvbWVwYWdlP2ZvbyUzRGJhcg==&uuid=e8e6efb0
 
 When captcha is enabled, and `_M.redirect_on_custom_url` is set to **true**, the block page **must** include the following:
 
-* The `<head>` section **must** include:
-
-```html
-<script src="https://www.google.com/recaptcha/api.js"></script>
-<script>
-function handleCaptcha(response) {
-    var vid = getQueryString("vid"); // getQueryString is implemented below
-    var uuid = getQueryString("uuid");
-    var name = '_pxCaptcha';
-    var expiryUtc = new Date(Date.now() + 1000 * 10).toUTCString();
-    var cookieParts = [name, '=', btoa(JSON.stringify({r: response, v:vid, u:uuid})), '; expires=', expiryUtc, '; path=/'];
-    document.cookie = cookieParts.join('');
-    var originalURL = getQueryString("url");
-    var originalHost = window.location.host;
-    window.location.href = window.location.protocol + "//" +  originalHost + originalURL;
-}
-
-// for reference : http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
-
-function getQueryString(name, url) {
-    if (!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-            results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    results[2] = decodeURIComponent(results[2].replace(/\+/g, " "));
-    if(name == "url") {
-      results[2] = atob(results[2]); //Not supported on IE Browsers
-    }
-    return results[2];
-}
-</script>
-```
 * The `<body>` section **must** include:
 
-```
-<div class="g-recaptcha" data-sitekey="6Lcj-R8TAAAAABs3FrRPuQhLMbp5QrHsHufzLf7b" data-callback="handleCaptcha" data-theme="dark"></div>
-```
+```html
+<div id="px-captcha"></div>
+<script>
+    window._pxAppId = '<APP_ID>';
+    window._pxJsClientSrc = 'https://client.perimeterx.net/<APP_ID>/main.min.js';
+    window._pxHostUrl = 'https://collector-<APP_ID>.perimeterx.net';
+</script>
+<script src="https://captcha.px-cdn.net/<APP_ID>/captcha.js?a=c&m=0"></script>
 
-* And the [PerimeterX Javascript snippet](https://console.perimeterx.com/#/app/applicationsmgmt) (availabe on the PerimeterX Portal via this link) must be pasted in.
+
 
 #### Configuration example:
  
@@ -415,41 +386,17 @@ function getQueryString(name, url) {
 ```html
 <html>
     <head>
-        <script src="https://www.google.com/recaptcha/api.js"></script>
-        <script>
-        function handleCaptcha(response) {
-            var vid = getQueryString("vid");
-            var uuid = getQueryString("uuid");
-            var name = '_pxCaptcha';
-            var expiryUtc = new Date(Date.now() + 1000 * 10).toUTCString();
-            var cookieParts = [name, '=', btoa(JSON.stringify({r: response, v:vid, u:uuid})), '; expires=', expiryUtc, '; path=/'];
-            document.cookie = cookieParts.join('');
-            // after getting resopnse we want to reaload the original page requested
-            var originalURL = getQueryString("url");
-            var originalHost = window.location.host;
-            window.location.href = window.location.protocol + "//" +  originalHost + originalURL;
-        }
-       
-       // http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
-    function getQueryString(name, url) {
-        if (!url) url = window.location.href;
-        name = name.replace(/[\[\]]/g, "\\$&");
-        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-            results = regex.exec(url);
-        if (!results) return null;
-        if (!results[2]) return '';
-        if(name == "url") {
-          results[2] = atob(results[2]); //Not supported on IE Browsers
-        }
-        return decodeURIComponent(results[2].replace(/\+/g, " "));
-    }
-
-        </script>
     </head>
     <body>
         <h1>You are Blocked</h1>
         <p>Try and solve the captcha</p> 
-        <div class="g-recaptcha" data-sitekey="6Lcj-R8TAAAAABs3FrRPuQhLMbp5QrHsHufzLf7b" data-callback="handleCaptcha" data-theme="dark"></div>
+        <div id="px-captcha"></div>
+        <script>
+            window._pxAppId = '<APP_ID>';
+            window._pxJsClientSrc = 'https://client.perimeterx.net/<APP_ID>/main.min.js';
+            window._pxHostUrl = 'https://collector-<APP_ID>.perimeterx.net';
+        </script>
+        <script src="https://captcha.px-cdn.net/<APP_ID>/captcha.js?a=c&m=0"></script>
     </body>
 <html>
 ```
