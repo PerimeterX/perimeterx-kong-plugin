@@ -13,10 +13,11 @@ Table of Contents
     *   [Installing on Amazon Linux](#awsinstall)
     *   [Basic Usage Example](#basic-usage)
 -   [Configuration](#configuration)
+    * [First-Party Configuration](#first_party_config)
+      * [First-Party Mode](#first-party)
+      * [PerimeterX First-Party JS Snippet](#perimeterx_first_party_js_snippet)
     *   [Blocking Score](#blocking-score)
     *   [Monitoring mode](#monitoring-mode)
-    *   [Enable/Disable Captcha](#captcha-support)
-    *   [Select Captcha Provider](#captcha-provider)
     *   [Enabled Routes](#enabled-routes)
     *   [Sensitive Routes](#sensitive-routes)
     *   [Extracting Real IP Address](#real-ip)
@@ -145,6 +146,42 @@ Configuration options are set via Kong's admin API, as config parameter.
 - cookie_secret
 - auth_token
 
+#### <a name="first_party_config"></a> First-Party Configuration
+
+##### <a name="first-party"></a> First-Party Mode
+  First-Party Mode enables the module to send/receive data to/from the sensor, acting as a reverse-proxy for client requests and sensor activities.
+
+  First-Party Mode may require additional changes on the [JS Sensor Snippet](#perimeterx_first_party_js_snippet). For more information, refer to the PerimeterX Portal.
+
+```bash
+--data 'config.first_party_enabled=true'
+```
+
+  The following routes must be enabled for First-Party Mode for the PerimeterX Kong plugin:  
+    - `/<PX_APP_ID without PX prefix>/xhr/*`  
+    - `/<PX_APP_ID without PX prefix>/init.js`  
+    - `/<PX_APP_ID without PX prefix>/captcha`  
+
+  - If the PerimeterX Kong module is enabled on `location /`, the routes are already open and no action is necessary.
+
+> NOTE: The PerimeterX Kong Plugin Configuration Requirements must be completed before proceeding to the next stage of installation.
+
+##### <a name="perimeterx_first_party_js_snippet"></a> First-Party JS Snippet
+
+Ensure the PerimeterX Kong Plugin is configured before deploying the PerimeterX First-Party JS Snippet across your site. (Detailed instructions for deploying the PerimeterX First-Party JS Snippet can be found <a href="https://console.perimeterx.com/docs/user_guide.html#first-party-snippet" onclick="window.open(this.href); return false;">here</a>.)
+
+To deploy the PerimeterX First-Party JS Snippet:
+
+##### 1. Generate the First-Party Snippet
+  * Go to <a href="https://console.perimeterx.com/#/app/applicationsmgmt" onclick="window.open(this.href); return false;">**Applications**</a> >> **Snippet**. 
+  * Select **First-Party**.
+  * Select **Use Default Routes**.
+  * Click **Copy Snippet** to generate the JS Snippet.
+  
+##### 2. Deploy the First-Party Snippet
+  * Copy the JS Snippet and deploy using a tag manager, or by embedding it globally into your web template for which websites you want PerimeterX to run.
+
+
 #### <a name="blocking-score"></a> Changing the Minimum Score for Blocking
 
 **Default blocking value:** 100
@@ -164,30 +201,6 @@ Configuration options are set via Kong's admin API, as config parameter.
 The PerimeterX plugin is enabled in monitor only mode by default.
 
 Setting the  block_enabled flag to *true* will activate the module to enforce the blocking score. The PerimeterX module will block users crossing the block score threshold that you define. If a user crosses the minimum block score then the user will receive the block page.
-
-
-
-#### <a name="captcha-support"></a>Enable/Disable CAPTCHA on the block page
-
-By enabling CAPTCHA support, a CAPTCHA will be served as part of the block page, giving real users the ability to identify as a human. By solving the CAPTCHA, the user's score is then cleaned up and the user is allowed to continue.
-
-**Default: true**
-
-```bash
---data 'config.captcha_enabled=false'
-```
-
-
-#### <a name="captcha-provider"></a>Select CAPTCHA Provider
-
-The CAPTCHA part of the block page can use one of the following:
-* [reCAPTCHA](https://www.google.com/recaptcha)
-* [FunCaptcha](https://www.funcaptcha.com/)
-
-**Default: 'reCaptcha'**
-```bash
---data 'config.captcha_provider=funCaptcha'
-```
 
 #### <a name="enabled-routes"></a> Enabled Routes
 
