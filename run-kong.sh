@@ -12,7 +12,7 @@ if [[ $1 == "-s" || $1 == "--setup" ]]; then
 	curl -i -X POST \
       --url http://localhost:8001/apis/ \
       --data 'name=example-api' \
-      --data 'methods=GET' \
+      --data 'methods=GET,POST' \
       --data 'upstream_url=http://testsite:3000'
 
     curl -i -X POST \
@@ -22,7 +22,9 @@ if [[ $1 == "-s" || $1 == "--setup" ]]; then
       --data 'config.auth_token=AUTH_TOKEN' \
       --data 'config.cookie_secret=COOKIE_KEY' \
       --data 'config.ip_headers=X-Forwarded-For' \
-      --data 'config.blocking_score=60' \
+      --data 'config.blocking_score=70' \
+      --data 'config.px_debug=true' \
+      --data 'config.first_party_enabled=true' \
       --data 'config.block_enabled=true'
 	exit 1
 fi
