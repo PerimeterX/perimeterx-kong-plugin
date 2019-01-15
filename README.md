@@ -134,11 +134,11 @@ You can find your app ID, authentication token, and cookie key under your accoun
 
 ## <a name="upgrade"></a> Upgrading
 
-With luarocks:
+With luarocks, run:
 
 `luarocks install perimeterx-kong-plugin`
 
-Contact [PerimeterX Support](support@perimeterx.com) for more details.
+For more information, contact [PerimeterX Support](support@perimeterx.com).
 
 ### <a name="configuration"></a> Configuration Options
 
