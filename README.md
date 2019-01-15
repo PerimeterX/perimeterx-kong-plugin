@@ -12,6 +12,7 @@ Table of Contents
     *   [Installation](#installation)
     *   [Installing on Amazon Linux](#awsinstall)
     *   [Basic Usage Example](#basic-usage)
+-   [Upgrading](*upgrade)    
 -   [Configuration](#configuration)
     * [First-Party Configuration](#first_party_config)
       * [First-Party Mode](#first-party)
@@ -133,6 +134,13 @@ curl -i -X POST \
 ```
 You can find your app ID, authentication token, and cookie key under your account's admin section in [PerimeterX Portal](https://console.perimeterx.com)
 
+## <a name="upgrade"></a> Upgrading
+
+With luarocks, run:
+
+`luarocks install perimeterx-kong-plugin`
+
+For more information, contact [PerimeterX Support](support@perimeterx.com).
 
 ### <a name="configuration"></a> Configuration Options
 
