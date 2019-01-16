@@ -140,6 +140,8 @@ To upgrade to the latest Enforcer version run the following command in luarocks:
 
 `luarocks install perimeterx-kong-plugin`
 
+Your Enforcer version is now upgraded to the latest enforcer version.
+
 For more information, contact [PerimeterX Support](support@perimeterx.com).
 
 ### <a name="configuration"></a> Configuration Options
