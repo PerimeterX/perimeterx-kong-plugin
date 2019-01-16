@@ -136,7 +136,7 @@ You can find your app ID, authentication token, and cookie key under your accoun
 
 ## <a name="upgrade"></a> Upgrading
 
-With luarocks, run:
+To upgrade to the latest Enforcer version run the following command in luarocks:
 
 `luarocks install perimeterx-kong-plugin`
 
