@@ -309,7 +309,7 @@ Users can customize the blocking page to meet their branding and message require
 --data 'config.custom_block_url=http://www.example.com/block.html'
 ```
 
-> Note: This URI has to be whitelisted under `config.whitelist.uri_full` to avoid infinite redirects.
+> Note: This URI **MUST** be whitelisted under `config.whitelist.uri_full` to avoid infinite redirects to the block page.
 
 
 #### <a name="api-protection"></a> API Protection Mode
