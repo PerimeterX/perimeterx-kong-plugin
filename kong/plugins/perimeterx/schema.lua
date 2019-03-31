@@ -43,18 +43,6 @@ return {
     self_check = function(schema, plugin_t, dao, is_updating)
         -- perform any custom verification
         local config = plugin_t
-        local function array_index_of(array, item)
-            if array == nil then
-                return -1
-            end
-
-            for i, value in ipairs(array) do
-                if value == item then
-                    return i
-                end
-            end
-            return -1
-        end
 
         if config.api_protection_mode then
             if config.api_protection_block_url == nil or config.api_protection_block_url == '' or config.api_protection_default_redirect_url == nil or config.api_protection_default_redirect_url == '' then
