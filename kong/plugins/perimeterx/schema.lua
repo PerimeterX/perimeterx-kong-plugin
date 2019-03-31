@@ -43,23 +43,7 @@ return {
     self_check = function(schema, plugin_t, dao, is_updating)
         -- perform any custom verification
         local config = plugin_t
-        local function array_index_of(array, item)
-            if array == nil then
-                return -1
-            end
 
-            for i, value in ipairs(array) do
-                if value == item then
-                    return i
-                end
-            end
-            return -1
-        end
-        if config.custom_block_url ~= nil then -- verify custom_block_url is in uri_full
-            if config.whitelist == nil or config.whitelist.uri_full == nil or array_index_of(config.whitelist.uri_full, config.custom_block_url) == -1 then
-                return false, Errors.schema "custom_block_url value must be a member of whitelist.uri_full array"
-            end
-        end
         if config.api_protection_mode then
             if config.api_protection_block_url == nil or config.api_protection_block_url == '' or config.api_protection_default_redirect_url == nil or config.api_protection_default_redirect_url == '' then
                 return false, Errors.schema "API protection mode requires setting values for api_protection_block_url and api_protection_default_redirect_url"
