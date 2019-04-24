@@ -1,4 +1,3 @@
-local Errors = require "kong.dao.errors"
 
 return {
     no_consumer = true, -- this plugin will only be API-wide,
@@ -40,8 +39,25 @@ return {
         whitelist_ua_full = {type = "array", default = {}},
         whitelist_ua_sub = {type = "array", default = {}}
     },
+    entity_checks = {
+        { conditional = {
+            if_field = "api_protection_mode",
+            if_match = { eq = true, },
+            then_field = "api_protection_block_url",
+            then_match = { required = true },
+        }, },
+        { conditional = {
+            if_field = "api_protection_mode",
+            if_match = { eq = true, },
+            then_field = "api_protection_default_redirect_url",
+            then_match = { required = true },
+        }, },
+    },
+    -- TODO: deprecated, `self_check` is the Kong 0.x mechanism for custom
+    -- validations, which was replaced by the above `entity_checks` in Kong 1.x
     self_check = function(schema, plugin_t, dao, is_updating)
         -- perform any custom verification
+        local Errors = require "kong.dao.errors"
         local config = plugin_t
 
         if config.api_protection_mode then
