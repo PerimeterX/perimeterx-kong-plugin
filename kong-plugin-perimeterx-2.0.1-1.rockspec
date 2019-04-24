@@ -15,14 +15,13 @@ description = {
 }
 
 dependencies = {
-    "perimeterx-nginx-plugin == 6.0"
+    "perimeterx-nginx-plugin == 6.2.1"
 }
 
-local pluginName = "perimeterx"
 build = {
   type = "builtin",
   modules = {
-    ["kong.plugins."..pluginName..".handler"] = "kong/plugins/"..pluginName.."/handler.lua",
-    ["kong.plugins."..pluginName..".schema"] = "kong/plugins/"..pluginName.."/schema.lua",
+    ["kong.plugins.perimeterx.handler"] = "kong/plugins/perimeterx/handler.lua",
+    ["kong.plugins.perimeterx.schema"] = "kong/plugins/perimeterx/schema.lua",
   }
 }
