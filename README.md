@@ -176,7 +176,7 @@ Configuration options are set via Kong's admin API, as config parameter.
 
 ##### <a name="perimeterx_first_party_js_snippet"></a> First-Party JS Snippet
 
-Ensure the PerimeterX Kong Plugin is configured before deploying the PerimeterX First-Party JS Snippet across your site. (Detailed instructions for deploying the PerimeterX First-Party JS Snippet can be found <a href="https://console.perimeterx.com/docs/user_guide.html#first-party-snippet" onclick="window.open(this.href); return false;">here</a>.)
+Ensure the PerimeterX Kong Plugin is configured before deploying the PerimeterX First-Party JS Snippet across your site. (Detailed instructions for deploying the PerimeterX First-Party JS Snippet can be found <a href="https://docs.perimeterx.com/pxconsole/docs/managing-applications#section-snippet" onclick="window.open(this.href); return false;">here</a>.)
 
 To deploy the PerimeterX First-Party JS Snippet:
 
