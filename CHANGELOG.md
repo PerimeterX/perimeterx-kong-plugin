@@ -5,29 +5,45 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [2.0.1] - 2019-03-31
+## [3.0.0] - 2021-02-22
+
 Fixes:
-- Removed validation for custom_block_url and whitelist_uri_full
+
+-   Support for Kong 1.x and 2.x
+
+## [2.0.1] - 2019-03-31
+
+Fixes:
+
+-   Removed validation for custom_block_url and whitelist_uri_full
 
 ## [2.0.0] - 2019-01-07
+
 Added:
-- Captcha v2
-- Sending cookie names on risk_api calls
-- Added PXHD handling
-- Various bug fixes
+
+-   Captcha v2
+-   Sending cookie names on risk_api calls
+-   Added PXHD handling
+-   Various bug fixes
 
 Breaking Changes:
-- Custom captcha page has to work with captcha v2
-- removed configurations: `captcha_provider`, `captcha_enabled`
+
+-   Custom captcha page has to work with captcha v2
+-   removed configurations: `captcha_provider`, `captcha_enabled`
 
 ## [1.4.0] - 2018-05-22
-- Updated method of passing config to NGINX plugin
+
+-   Updated method of passing config to NGINX plugin
+
 ## [1.3.0] - 2018-02-19
-- Update first party templates with fallback support
-- Use relative URL for redirect in API protection mode
+
+-   Update first party templates with fallback support
+-   Use relative URL for redirect in API protection mode
 
 ## [1.2.0] - 2018-01-31
-- Support first party
+
+-   Support first party
 
 ## [1.1.0] - 2017-10-19
-- API protection mode
+
+-   API protection mode
