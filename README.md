@@ -34,6 +34,8 @@
     -   [Custom Cookie Header](#custom-cookie-header)
 
 -   [Advanced Blocking Response](#advancedBlockingResponse)
+-   [Additional Information](#additional-information)
+-   [Contributing](#contributing)
 
 ## <a name="gettingstarted"></a> Getting Started
 
@@ -525,6 +527,11 @@ window._pxOnCaptchaSuccess = function (isValid) {
 ```
 
 For details on how to create a custom Captcha page, refer to the [documentation](https://docs.perimeterx.com/pxconsole/docs/customize-challenge-page)
+
+## <a name="additional-information"></a> Additional Information
+### URI Delimiters
+
+PerimeterX processes URI paths with general- and sub-delimiters according to RFC 3986. General delimiters (e.g., `?`, `#`) are used to separate parts of the URI. Sub-delimiters (e.g., `$`, `&`) are not used to split the URI as they are considered valid characters in the URI path.
 
 ## <a name="contributing"></a> Contributing
 
