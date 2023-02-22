@@ -1,19 +1,8 @@
-FROM kong:2.3.2-ubuntu
+FROM kong:2.8.3-ubuntu
 USER root
-RUN apt update && apt-get -qq -y install \
-    build-essential vim \
-    ca-certificates \
-    curl \
-    git \
-    libpcre3 \
-    libpcre3-dev \
-    libssl-dev \
-    lua-cjson \
-    m4 \
-    rsyslog \
-    wget \
-    zlib1g-dev \
-    luarocks
+ENV DEBIAN_FRONTEND noninteractive
+RUN apt update && apt-get -qq -y install make
+
 RUN luarocks install perimeterx-nginx-plugin
 RUN ln -s /usr/local/lib/lua/px /usr/local/share/lua/5.1/px
 

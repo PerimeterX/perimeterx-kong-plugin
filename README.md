@@ -51,7 +51,7 @@
 
 To install package dependecies on Ubuntu run:
 
-`sudo apt-get update && sudo apt-get install lua-cjson libnettle6 nettle-dev luarocks luajit libluajit-5.1-dev ca-certificates`
+`sudo apt-get update && sudo apt-get install lua-cjson libnettle6 nettle-dev luarocks luajit libluajit-5.1-dev ca-certificates make`
 
 All Lua dependecies are automatically fulfilled with Luarocks.
 
@@ -436,7 +436,7 @@ it is best to use different Applications and policies for different APIs.
 
 #### <a name="add-activity-handler"></a> Additional Activity Handler
 
-Adding an additional activity handler is done by setting 'additional_activity_handler' with a user defined function on the 'pxconfig.lua' file. The 'additional_activity_handler' function will be executed before sending the data to the PerimeterX portal.  
+Adding an additional activity handler is done by setting 'additional_activity_handler' with a user defined function on the 'pxconfig.lua' file. The 'additional_activity_handler' function will be executed before sending the data to the PerimeterX portal.
 Because of technical limitations of the Kong platform, you can't set this function using the admin API. Instead, you need to edit the PerimeterX plugin's `handler.lua`
 file, and add the function directly to the configuration.
 
