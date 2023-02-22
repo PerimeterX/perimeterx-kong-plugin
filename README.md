@@ -41,7 +41,7 @@
 
 ## <a name="dependencies"></a> Dependencies
 
--   [Kong](https://getkong.org/)
+-   [Kong](https://getkong.org/) (1.x and 2.x Kong versions are supported)
 -   [LuaJIT](http://luajit.org/)
 -   [Lua CJSON](http://www.kyne.com.au/~mark/software/lua-cjson.php)
 -   [Lua Resty HTTP](https://github.com/pintsized/lua-resty-http)
