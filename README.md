@@ -30,6 +30,7 @@
     -   [API Protection Mode](#api-protection)
     -   [Multiple App Support](#multipleapps)
     -   [Additional Activity Handler](#add-activity-handler)
+    -   [Enrich Custom Parameters](#custom-parameters)
     -   [Whitelisting](#whitelisting)
     -   [Custom Cookie Header](#custom-cookie-header)
 
@@ -436,19 +437,68 @@ it is best to use different Applications and policies for different APIs.
 
 #### <a name="add-activity-handler"></a> Additional Activity Handler
 
-Adding an additional activity handler is done by setting 'additional_activity_handler' with a user defined function on the 'pxconfig.lua' file. The 'additional_activity_handler' function will be executed before sending the data to the PerimeterX portal.
+Adding an additional activity handler is done by setting `additional_activity_handler` property with an user defined function. The 'additional_activity_handler' function will be executed before sending the data to the PerimeterX portal.
 Because of technical limitations of the Kong platform, you can't set this function using the admin API. Instead, you need to edit the PerimeterX plugin's `handler.lua`
 file, and add the function directly to the configuration.
 
-Default: Only send activity to PerimeterX.
+Default: nil
 
 ```lua
 function additional_activity_handler(event_type, ctx, details)
 	local cjson = require "cjson"
 	if (event_type == 'block') then
-		logger.warning("PerimeterX " + event_type + " blocked with score: " + ctx.score + "details " + cjson.encode(details))
+		ngx.log(ngx.ERR, "PerimeterX: [" .. event_type .. "] blocked with score: " .. ctx.block_score .. ". Details: " .. cjson.encode(details))
 	else
-		logger.info("PerimeterX " + event_type + " details " +  cjson.encode(details))
+		ngx.log(ngx.ERR, "PerimeterX: [" .. event_type .. "]. Details: " .. cjson.encode(details))
+	end
+end
+
+function PXHandler:init_worker(config)
+    PXHandler.super.init_worker(self)
+    ...
+    config.additional_activity_handler = additional_activity_handler
+end
+```
+
+### <a name="custom-parameters"> Enrich Custom Parameters
+
+Adding an Enrich Custom Parameters function is done by setting `enrich_custom_params` property with an user defined function. With the `enrich_custom_params` function you can add up to 10 custom parameters to be sent back to PerimeterX servers. When set, the function is called before setting the payload on every request to PerimeterX servers. The parameters should be passed according to the correct order (1-10).
+You must return the `px_custom_params` object at the end of the function.
+Because of technical limitations of the Kong platform, you can't set this function using the admin API. Instead, you need to edit the PerimeterX plugin's `handler.lua`
+
+Default: nil
+
+```lua
+function enrich_custom_parameters(px_custom_params)
+    -- here we have an access to `ngx` object.
+    -- e.g.: ngx.req.get_headers()["x-user-id"]
+    px_custom_params["custom_param1"] = "user_id"
+    return px_custom_params
+end
+
+function PXHandler:init_worker(config)
+    PXHandler.super.init_worker(self)
+    ...
+    config.enrich_custom_parameters = enrich_custom_parameters
+end
+
+```
+
+#### <a name=""></a> Additional Activity Handler
+
+Adding an additional activity handler is done by setting 'additional_activity_handler' configuration directive with a user defined function. The 'additional_activity_handler' function will be executed before sending the data to the PerimeterX portal.
+Because of technical limitations of the Kong platform, you can't set this function using the admin API. Instead, you need to edit the PerimeterX plugin's `handler.lua`
+file, and add the function directly to the configuration.
+
+Default: not set.
+
+```lua
+function additional_activity_handler(event_type, ctx, details)
+	local cjson = require "cjson"
+	if (event_type == 'block') then
+		ngx.log(ngx.ERR, "PerimeterX: [" .. event_type .. "] blocked with score: " .. ctx.block_score .. ". Details: " .. cjson.encode(details))
+	else
+		ngx.log(ngx.ERR, "PerimeterX: [" .. event_type .. "]. Details: " .. cjson.encode(details))
 	end
 end
 
