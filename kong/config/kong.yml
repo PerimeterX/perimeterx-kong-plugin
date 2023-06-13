@@ -24,9 +24,9 @@ services:
 plugins:
     - name: perimeterx
       config:
-          px_appId: <REPLACE>
-          auth_token: <REPLACE>
-          cookie_secret: <REPLACE>
+          px_appId: PXvRfnOj4y
+          auth_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZXMiOlsicmlza19zY29yZSIsInJlc3RfYXBpIl0sImlhdCI6MTU5NDg5OTEzNiwic3ViIjoiUFh2UmZuT2o0eSIsImp0aSI6IjNmNDkyNzA2LTQ2ZjItNDBlMy05ZjgxLTg4MzdmNjFkYWU3YSJ9.FCs49WM_-6mBS5SXZvKuNsnsgqcCq9C8pQLg2YgXyeQ
+          cookie_secret: Aoyza2bmkUl3437FbJtHarY3Dn3ufhoj0W689QHx1urTJhaN0jI5Fw6yf8Mma322
           px_debug: true
           ip_headers:
               - X-Forwarded-For
