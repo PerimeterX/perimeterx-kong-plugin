@@ -1,11 +1,11 @@
 package = "kong-plugin-perimeterx"
 
-version = "3.1.0-1"
+version = "3.1.1-1"
 
 supported_platforms = {"linux", "macosx"}
 source = {
     url = "git://github.com/PerimeterX/perimeterx-kong-plugin.git",
-    tag = "v3.1.0"
+    tag = "v3.1.1"
 }
 
 description = {
@@ -15,7 +15,7 @@ description = {
 }
 
 dependencies = {
-    "perimeterx-nginx-plugin == 7.1.3"
+    "perimeterx-nginx-plugin == 7.3.0"
 }
 
 local pluginName = "perimeterx"
