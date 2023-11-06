@@ -15,6 +15,7 @@ return {
         sensitive_routes_prefix = {type = "array", default = {}},
         sensitive_routes_suffix = {type = "array", default = {}},
         enabled_routes = {type = "array", default = {}},
+        monitored_routes = {type = "array", default = {}},
         first_party_enabled = {type = "boolean", default = true},
         reverse_xhr_enabled = {type = "boolean", default = true},
 
