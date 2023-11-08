@@ -4,7 +4,7 @@ local pxconfig = require("px.pxconfig")
 local pxtimer = require("px.utils.pxtimer")
 local pxconstants = require("px.utils.pxconstants")
 local px = require("px.pxnginx")
-local MODULE_VERSION = 'Kong Plugin v3.1.0'
+local MODULE_VERSION = 'Kong Plugin v3.1.2'
 local ngx_now = ngx.now
 
 -- Example: additional_activity_handler() function
