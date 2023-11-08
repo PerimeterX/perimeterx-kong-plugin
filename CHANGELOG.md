@@ -6,25 +6,39 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [3.1.2] - 2023-11-08
+### Added
+- Docker test scripts for various Kong versions
+
+### Changed
+- Update configuration schema
+
+
+## [3.1.1] - 2023-06-13
+### Added
+- enrich_custom_params
+
+### Changed
+- Depend on perimeterx-nginx-plugin v7.3.0
+
+
 ## [3.1.0] - 2023-02-23
 ### Added
 - px_metadata.json
 
 ### Changed
--   Depend on perimeterx-nginx-plugin v7.1.3
+- Depend on perimeterx-nginx-plugin v7.1.3
 
 
 ## [3.0.0] - 2021-02-22
+### Fixes:
+- Support for Kong 1.x and 2.x
 
-Fixes:
-
--   Support for Kong 1.x and 2.x
 
 ## [2.0.1] - 2019-03-31
+### Fixes:
+- Removed validation for custom_block_url and whitelist_uri_full
 
-Fixes:
-
--   Removed validation for custom_block_url and whitelist_uri_full
 
 ## [2.0.0] - 2019-01-07
 
