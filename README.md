@@ -52,7 +52,7 @@
 
 To install package dependecies on Ubuntu run:
 
-`sudo apt-get update && sudo apt-get install lua-cjson libnettle6 nettle-dev luarocks luajit libluajit-5.1-dev ca-certificates make`
+`sudo apt-get update && sudo apt-get install lua-cjson nettle-dev luarocks luajit libluajit-5.1-dev ca-certificates make`
 
 All Lua dependecies are automatically fulfilled with Luarocks.
 
@@ -64,7 +64,7 @@ Installation can be done using [luarocks](https://luarocks.org/).
 $ luarocks install kong-plugin-perimeterx
 ```
 
-Manual installation can accomplished by downoading the sources for this repository and running `sudo make install`.
+Manual installation can accomplished by downloading the sources for this repository and running `sudo make install`.
 
 <a name="awsinstall"></a> Additional steps for installing on Amazon Linux
 
@@ -147,9 +147,9 @@ You can find your app ID, authentication token, and cookie key under your accoun
 
 To run the demonstration Docker image:
 
-1. Update the configuration in `config/kong.yaml` with your PerimeterX app id, cookie secret and auth token.
+1. Copy `kong/config/kong.yml` to `kong/config/kong.dev.yml` and adjust it with your PerimeterX app id, cookie secret and auth token.
 
-2. From the root folder execute `./run-kong.sh`.
+2. From the root folder execute `./scripts/run-kong.sh  2.8.3`.
 
 3. Navigate to http://127.0.0.1:8000.
 
