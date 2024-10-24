@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [4.0.0] - 2024-10-24
+### Added
+- Kong 3.x is now supported
+
+### Changed
+- Kong 1.x is no longer supported
+
+
 ## [3.1.2] - 2023-11-08
 ### Added
 - Docker test scripts for various Kong versions
