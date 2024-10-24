@@ -1,11 +1,15 @@
-local BasePlugin = require "kong.plugins.base_plugin"
-local PXHandler = BasePlugin:extend()
 local pxconfig = require("px.pxconfig")
 local pxtimer = require("px.utils.pxtimer")
 local pxconstants = require("px.utils.pxconstants")
 local px = require("px.pxnginx")
-local MODULE_VERSION = 'Kong Plugin v3.1.2'
+local MODULE_VERSION = "3.1.2"
+local MODULE_VERSION_FULL = "Kong Plugin v" .. MODULE_VERSION
 local ngx_now = ngx.now
+
+local PXHandler = {
+    VERSION = MODULE_VERSION,
+    PRIORITY = 2500,
+}
 
 -- Example: additional_activity_handler() function
 --function additional_activity_handler(event_type, ctx, details)
@@ -25,24 +29,19 @@ local ngx_now = ngx.now
 --    return px_custom_params
 --end
 
-function PXHandler:new()
-    PXHandler.super.new(self, "perimeterx-plugin")
-end
 
 local function get_now()
     return ngx_now() * 1000
 end
 
-function PXHandler:init_worker(config)
-    PXHandler.super.init_worker(self)
-    pxconstants.MODULE_VERSION = MODULE_VERSION
-    pxtimer.application(pxconfig)
+function PXHandler:init_worker()
+     pxconstants.MODULE_VERSION = MODULE_VERSION_FULL
+     pxtimer.application(pxconfig)
 end
 
 function PXHandler:access(config)
     local ngx_ctx = ngx.ctx
     ngx_ctx.KONG_HEADER_FILTER_STARTED_AT = get_now()
-    PXHandler.super.access(self)
     config.additional_activity_handler = additional_activity_handler
     config.enrich_custom_parameters = enrich_custom_parameters
     px.application(config)

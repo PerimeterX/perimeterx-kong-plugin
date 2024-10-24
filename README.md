@@ -42,7 +42,7 @@
 
 ## <a name="dependencies"></a> Dependencies
 
--   [Kong](https://getkong.org/) (1.x and 2.x Kong versions are supported)
+-   [Kong](https://getkong.org/) (2.x and 3.x Kong versions are supported)
 -   [LuaJIT](http://luajit.org/)
 -   [Lua CJSON](http://www.kyne.com.au/~mark/software/lua-cjson.php)
 -   [Lua Resty HTTP](https://github.com/pintsized/lua-resty-http)
@@ -50,7 +50,7 @@
 -   [lustache](https://github.com/Olivine-Labs/lustache)
 -   [GNU Nettle >= v3.2](https://www.lysator.liu.se/~nisse/nettle/)
 
-To install package dependecies on Ubuntu run:
+To install package dependencies on Ubuntu run:
 
 `sudo apt-get update && sudo apt-get install lua-cjson nettle-dev luarocks luajit libluajit-5.1-dev ca-certificates make`
 
@@ -67,31 +67,6 @@ $ luarocks install kong-plugin-perimeterx
 Manual installation can accomplished by downloading the sources for this repository and running `sudo make install`.
 
 <a name="awsinstall"></a> Additional steps for installing on Amazon Linux
-
----
-
-### For Nginx+:
-
-Install the lua modules provided by the Nginx team via yum as shown below as well as the CA certificates bundle which will be required when you configure Nginx.
-
-```
-yum -y install nginx-plus-module-lua ca-certificates.noarch
-```
-
-Download and compile nettle.
-
-> Side note: Use the version neccessary for your environment.
-
-```
-yum -y install m4 # prerequisite for nettle
-cd /tmp/
-wget https://ftp.gnu.org/gnu/nettle/nettle-3.3.tar.gz
-tar -xzf nettle-3.3.tar.gz
-cd nettle-3.3
-./configure
-make clean && make install
-cd /usr/lib64 && ln -s /usr/local/lib64/libnettle.so .
-```
 
 Make sure to change the path shown below in the "Lua CA Certificates" section as Amazon Linux stores the CA required in a different location than shown.
 
@@ -122,10 +97,20 @@ In CentOS/RHEL systems, the CA bundle location may be located at `/etc/pki/tls/c
 
 Ensure that you followed the NGINX Configuration Requirements section before proceeding.
 
-Load the plugin by adding `perimeterx` to the `custom_plugins` list in your Kong configuration (on each Kong node):
+Load the plugin by adding `perimeterx` to the `plugins` section in your Kong configuration (on each Kong node).
+
+`kong.yaml` "plugins" section example:
 
 ```
-custom_plugins = perimeterx
+...
+plugins:
+    - name: perimeterx
+      config:
+          px_appId: --REPLACE--
+          auth_token: --REPLACE--
+          cookie_secret: --REPLACE--
+          px_debug: true
+          block_enabled: true
 ```
 
 Note: you can also set this property via its environment variable equivalent: `KONG_CUSTOM_PLUGINS`.
@@ -149,7 +134,7 @@ To run the demonstration Docker image:
 
 1. Copy `kong/config/kong.yml` to `kong/config/kong.dev.yml` and adjust it with your PerimeterX app id, cookie secret and auth token.
 
-2. From the root folder execute `./scripts/run-kong.sh  2.8.3`.
+2. From the root folder execute `./scripts/run-kong.sh  3.4.2`.
 
 3. Navigate to http://127.0.0.1:8000.
 
@@ -454,7 +439,6 @@ function additional_activity_handler(event_type, ctx, details)
 end
 
 function PXHandler:init_worker(config)
-    PXHandler.super.init_worker(self)
     ...
     config.additional_activity_handler = additional_activity_handler
 end
@@ -477,7 +461,6 @@ function enrich_custom_parameters(px_custom_params)
 end
 
 function PXHandler:init_worker(config)
-    PXHandler.super.init_worker(self)
     ...
     config.enrich_custom_parameters = enrich_custom_parameters
 end
@@ -503,7 +486,6 @@ function additional_activity_handler(event_type, ctx, details)
 end
 
 function PXHandler:init_worker(config)
-    PXHandler.super.init_worker(self)
     ...
     --add function to pxconfig here
     config.additional_activity_handler = additional_activity_handler
