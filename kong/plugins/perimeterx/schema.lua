@@ -80,7 +80,7 @@ return {
         -- ## GraphQL
         { px_sensitive_graphql_operation_types = {type = "array", elements = { type = "string" }, default = {}} },
         { px_sensitive_graphql_operation_names = {type = "array", elements = { type = "string" }, default = {}} },
-        { px_graphql_routes = {type = "array", elements = { type = "string" }, default = {'/graphql'}} },
+        { px_graphql_routes = {type = "array", elements = { type = "string" }, default = {}} },
 
         -- ## User Identifiers
         { px_jwt_cookie_name = {type = "string"} },
