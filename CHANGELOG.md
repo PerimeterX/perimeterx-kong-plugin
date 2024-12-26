@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [4.0.1] - 2024-12-26
+### Fixed
+- GraphQL default path
+
+### Changed
+- Depend on perimeterx-nginx-plugin v7.3.4
+
+
 ## [4.0.0] - 2024-10-24
 ### Added
 - Kong 3.x is now supported
