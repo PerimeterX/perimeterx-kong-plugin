@@ -9,8 +9,9 @@ RUN ln -s /usr/local/lib/lua/px /usr/local/share/lua/5.1/px
 COPY . /tmp/perimeterx-kong-plugin
 RUN cd /tmp/perimeterx-kong-plugin && luarocks make
 COPY kong/config/kong.dev.yml /etc/kong/kong.yml
+COPY scripts/kong.conf.default /etc/kong/kong.conf
 
-EXPOSE 8000 8443 8001 8444
+EXPOSE 8000 8443 8001 8444 8002
 
 USER kong
 ENTRYPOINT ["/docker-entrypoint.sh"]
