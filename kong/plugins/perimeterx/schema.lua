@@ -63,6 +63,8 @@ return {
         { whitelist_ip_addresses = {type = "array", elements = { type = "string" }, default = {}} },
         { whitelist_ua_full = {type = "array", elements = { type = "string" }, default = {}} },
         { whitelist_ua_sub = {type = "array", elements = { type = "string" }, default = {}} },
+        { whitelist_hosts = {type = "array", elements = { type = "string" }, default = {}} },
+
 
         -- ## Login Credentials extraction
         { px_enable_login_creds_extraction = {type = "boolean", default = false} },

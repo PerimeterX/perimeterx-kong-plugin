@@ -4,51 +4,51 @@
 
 ## Table of Contents
 
--   [Getting Started](#gettingstarted)
-    -   [Dependencies](#dependencies)
-    -   [Requirements](#requirements)
-    -   [Installation](#installation)
-    -   [Installing on Amazon Linux](#awsinstall)
-    -   [Basic Usage Example](#basic-usage)
-    -   [Demonstration Docker](#docker)
--   [Upgrading](*upgrade)
--   [Configuration](#configuration)
+- [Getting Started](#gettingstarted)
+  - [Dependencies](#dependencies)
+  - [Requirements](#requirements)
+  - [Installation](#installation)
+  - [Installing on Amazon Linux](#awsinstall)
+  - [Basic Usage Example](#basic-usage)
+  - [Demonstration Docker](#docker)
+- [Upgrading](*upgrade)
+- [Configuration](#configuration)
 
-    -   [First-Party Configuration](#first_party_config)
-        -   [First-Party Mode](#first-party)
-        -   [PerimeterX First-Party JS Snippet](#perimeterx_first_party_js_snippet)
-    -   [Blocking Score](#blocking-score)
-    -   [Monitoring mode](#monitoring-mode)
-    -   [Enabled Routes](#enabled-routes)
-    -   [Sensitive Routes](#sensitive-routes)
-    -   [Extracting Real IP Address](#real-ip)
-    -   [Filter Sensitive Headers](#sensitive-headers)
-    -   [API Timeout](#api-timeout)
-    -   [Send Page Activities](#send-page-activities)
-    -   [Debug Mode](#debug-mode)
-    -   [Custom Block Page](#customblockpage)
-    -   [API Protection Mode](#api-protection)
-    -   [Multiple App Support](#multipleapps)
-    -   [Additional Activity Handler](#add-activity-handler)
-    -   [Enrich Custom Parameters](#custom-parameters)
-    -   [Whitelisting](#whitelisting)
-    -   [Custom Cookie Header](#custom-cookie-header)
+  - [First-Party Configuration](#first_party_config)
+    - [First-Party Mode](#first-party)
+    - [PerimeterX First-Party JS Snippet](#perimeterx_first_party_js_snippet)
+  - [Blocking Score](#blocking-score)
+  - [Monitoring mode](#monitoring-mode)
+  - [Enabled Routes](#enabled-routes)
+  - [Sensitive Routes](#sensitive-routes)
+  - [Extracting Real IP Address](#real-ip)
+  - [Filter Sensitive Headers](#sensitive-headers)
+  - [API Timeout](#api-timeout)
+  - [Send Page Activities](#send-page-activities)
+  - [Debug Mode](#debug-mode)
+  - [Custom Block Page](#customblockpage)
+  - [API Protection Mode](#api-protection)
+  - [Multiple App Support](#multipleapps)
+  - [Additional Activity Handler](#add-activity-handler)
+  - [Enrich Custom Parameters](#custom-parameters)
+  - [Whitelisting](#whitelisting)
+  - [Custom Cookie Header](#custom-cookie-header)
 
--   [Advanced Blocking Response](#advancedBlockingResponse)
--   [Additional Information](#additional-information)
--   [Contributing](#contributing)
+- [Advanced Blocking Response](#advancedBlockingResponse)
+- [Additional Information](#additional-information)
+- [Contributing](#contributing)
 
 ## <a name="gettingstarted"></a> Getting Started
 
 ## <a name="dependencies"></a> Dependencies
 
--   [Kong](https://getkong.org/) (2.x and 3.x Kong versions are supported)
--   [LuaJIT](http://luajit.org/)
--   [Lua CJSON](http://www.kyne.com.au/~mark/software/lua-cjson.php)
--   [Lua Resty HTTP](https://github.com/pintsized/lua-resty-http)
--   [Lua Resty Nettle](https://github.com/bungle/lua-resty-nettle)
--   [lustache](https://github.com/Olivine-Labs/lustache)
--   [GNU Nettle >= v3.2](https://www.lysator.liu.se/~nisse/nettle/)
+- [Kong](https://getkong.org/) (2.x and 3.x Kong versions are supported)
+- [LuaJIT](http://luajit.org/)
+- [Lua CJSON](http://www.kyne.com.au/~mark/software/lua-cjson.php)
+- [Lua Resty HTTP](https://github.com/pintsized/lua-resty-http)
+- [Lua Resty Nettle](https://github.com/bungle/lua-resty-nettle)
+- [lustache](https://github.com/Olivine-Labs/lustache)
+- [GNU Nettle >= v3.2](https://www.lysator.liu.se/~nisse/nettle/)
 
 To install package dependencies on Ubuntu run:
 
@@ -61,7 +61,7 @@ All Lua dependecies are automatically fulfilled with Luarocks.
 Installation can be done using [luarocks](https://luarocks.org/).
 
 ```sh
-$ luarocks install kong-plugin-perimeterx
+luarocks install kong-plugin-perimeterx
 ```
 
 Manual installation can accomplished by downloading the sources for this repository and running `sudo make install`.
@@ -136,7 +136,7 @@ To run the demonstration Docker image:
 
 2. From the root folder execute `./scripts/run-kong.sh  3.4.2`.
 
-3. Navigate to http://127.0.0.1:8000.
+3. Navigate to <http://127.0.0.1:8000>.
 
 4. You can find the PerimeterX module output in your terminal.
 
@@ -156,11 +156,11 @@ For more information, contact [PerimeterX Support](support@perimeterx.com).
 
 Configuration options are set via Kong's admin API, as config parameter.
 
-#### Required parameters:
+#### Required parameters
 
--   px_appId
--   cookie_secret
--   auth_token
+- px_appId
+- cookie_secret
+- auth_token
 
 #### <a name="first_party_config"></a> First-Party Configuration
 
@@ -176,11 +176,11 @@ First-Party Mode may require additional changes on the [JS Sensor Snippet](#peri
 
 The following routes must be enabled for First-Party Mode for the PerimeterX Kong plugin:
 
--   `/<PX_APP_ID without PX prefix>/xhr/*`
--   `/<PX_APP_ID without PX prefix>/init.js`
--   `/<PX_APP_ID without PX prefix>/captcha/*`
+- `/<PX_APP_ID without PX prefix>/xhr/*`
+- `/<PX_APP_ID without PX prefix>/init.js`
+- `/<PX_APP_ID without PX prefix>/captcha/*`
 
--   If the PerimeterX Kong module is enabled on `location /`, the routes are already open and no action is necessary.
+- If the PerimeterX Kong module is enabled on `location /`, the routes are already open and no action is necessary.
 
 > NOTE: The PerimeterX Kong Plugin Configuration Requirements must be completed before proceeding to the next stage of installation.
 
@@ -192,14 +192,14 @@ To deploy the PerimeterX First-Party JS Snippet:
 
 ##### 1. Generate the First-Party Snippet
 
--   Go to <a href="https://console.perimeterx.com/#/app/applicationsmgmt" onclick="window.open(this.href); return false;">**Applications**</a> >> **Snippet**.
--   Select **First-Party**.
--   Select **Use Default Routes**.
--   Click **Copy Snippet** to generate the JS Snippet.
+- Go to <a href="https://console.perimeterx.com/#/app/applicationsmgmt" onclick="window.open(this.href); return false;">**Applications**</a> >> **Snippet**.
+- Select **First-Party**.
+- Select **Use Default Routes**.
+- Click **Copy Snippet** to generate the JS Snippet.
 
 ##### 2. Deploy the First-Party Snippet
 
--   Copy the JS Snippet and deploy using a tag manager, or by embedding it globally into your web template for which websites you want PerimeterX to run.
+- Copy the JS Snippet and deploy using a tag manager, or by embedding it globally into your web template for which websites you want PerimeterX to run.
 
 #### <a name="blocking-score"></a> Changing the Minimum Score for Blocking
 
@@ -361,9 +361,9 @@ The `_M.redirect_on_custom_url` flag provides 2 options for redirecting users to
 
 By default, when a user crosses the blocking threshold and blocking is enabled, the user will be redirected to the block page defined by the `_M.custom_block_url` variable, responding with a 307 (Temporary Redirect) HTTP Response Code.
 
-Setting the flag to flase will _consume_ the page and serve it under the current URL, responding with a 403 (Unauthorized) HTTP Response Code.
+Setting the flag to flase will *consume* the page and serve it under the current URL, responding with a 403 (Unauthorized) HTTP Response Code.
 
-> _Setting the flag to **false** does not require the block page to include any of the coming examples, as they are injected into the blocking page via the PerimeterX Nginx Enforcer._
+> *Setting the flag to **false** does not require the block page to include any of the coming examples, as they are injected into the blocking page via the PerimeterX Nginx Enforcer.*
 
 Setting the flag to **true** (enabling redirects) will result with the following URL upon blocking:
 
@@ -373,11 +373,11 @@ http://www.example.com/block.html?url=L3NvbWVwYWdlP2ZvbyUzRGJhcg==&uuid=e8e6efb0
 
 > Note: the **url** variable is comprised of URL Encoded query parameters (of the originating request) and then both the original path and variables are Base64 Encoded (to avoid collisions with block page query params).
 
-###### Custom blockpage requirements:
+###### Custom blockpage requirements
 
 When captcha is enabled, and `_M.redirect_on_custom_url` is set to **true**, the block page **must** include the following:
 
--   The `<body>` section **must** include:
+- The `<body>` section **must** include:
 
 ````html
 <div id="px-captcha"></div>
@@ -391,7 +391,7 @@ When captcha is enabled, and `_M.redirect_on_custom_url` is set to **true**, the
 #### Configuration example: ```bash --data 'config.custom_block_url=/block.html' --data 'config.redirect_on_custom_url=true'
 ````
 
-#### Block page implementation full example:
+#### Block page implementation full example
 
 ```html
 <html>
@@ -430,12 +430,12 @@ Default: nil
 
 ```lua
 function additional_activity_handler(event_type, ctx, details)
-	local cjson = require "cjson"
-	if (event_type == 'block') then
-		ngx.log(ngx.ERR, "PerimeterX: [" .. event_type .. "] blocked with score: " .. ctx.block_score .. ". Details: " .. cjson.encode(details))
-	else
-		ngx.log(ngx.ERR, "PerimeterX: [" .. event_type .. "]. Details: " .. cjson.encode(details))
-	end
+ local cjson = require "cjson"
+ if (event_type == 'block') then
+  ngx.log(ngx.ERR, "PerimeterX: [" .. event_type .. "] blocked with score: " .. ctx.block_score .. ". Details: " .. cjson.encode(details))
+ else
+  ngx.log(ngx.ERR, "PerimeterX: [" .. event_type .. "]. Details: " .. cjson.encode(details))
+ end
 end
 
 function PXHandler:init_worker(config)
@@ -477,12 +477,12 @@ Default: not set.
 
 ```lua
 function additional_activity_handler(event_type, ctx, details)
-	local cjson = require "cjson"
-	if (event_type == 'block') then
-		ngx.log(ngx.ERR, "PerimeterX: [" .. event_type .. "] blocked with score: " .. ctx.block_score .. ". Details: " .. cjson.encode(details))
-	else
-		ngx.log(ngx.ERR, "PerimeterX: [" .. event_type .. "]. Details: " .. cjson.encode(details))
-	end
+ local cjson = require "cjson"
+ if (event_type == 'block') then
+  ngx.log(ngx.ERR, "PerimeterX: [" .. event_type .. "] blocked with score: " .. ctx.block_score .. ". Details: " .. cjson.encode(details))
+ else
+  ngx.log(ngx.ERR, "PerimeterX: [" .. event_type .. "]. Details: " .. cjson.encode(details))
+ end
 end
 
 function PXHandler:init_worker(config)
@@ -518,19 +518,21 @@ whitelist_uri_prefixes = {},
 whitelist_uri_suffixes = {'.css', '.bmp', '.tif', '.ttf', '.docx', '.woff2', '.js', '.pict', '.tiff', '.eot', '.xlsx', '.jpg', '.csv', '.eps', '.woff', '.xls', '.jpeg', '.doc', '.ejs', '.otf', '.pptx', '.gif', '.pdf', '.swf', '.svg', '.ps', '.ico', '.pls', '.midi', '.svgz', '.class', '.png', '.ppt', '.mid', 'webp', '.jar'},
 whitelist_ip_addresses = {},
 whitelist_ua_full = {},
-whitelist_ua_sub = {}
+whitelist_ua_sub = {},
+whitelist_hosts = {}
 ```
 
--   **whitelist_uri_full** : for value `{'/api_server_full'}` - will filter requests to `/api_server_full?data=1` but not to `/api_server?data=1`
--   **whitelist_uri_prefixes** : for value `{'/api_server'}` - will filter requests to `/api_server_full?data=1` but not to `/full_api_server?data=1`
--   **whitelist_uri_suffixes** : for value `{'.css'}` - will filter requests to `/style.css` but not to `/style.js`
--   **whitelist_ip_addresses** : for value `{'192.168.99.1'}` - will filter requests coming from any of the listed ips.
--   **whitelist_ua_full** : for value `{'Mozilla/5.0 (compatible; pingbot/2.0; http://www.pingdom.com/)'}` - will filter all requests matching this exact UA.
--   **whitelist_ua_sub** : for value `{'GoogleCloudMonitoring'}` - will filter requests containing the provided string in their UA.
+- **whitelist_uri_full** : for value `{'/api_server_full'}` - will filter requests to `/api_server_full?data=1` but not to `/api_server?data=1`
+- **whitelist_uri_prefixes** : for value `{'/api_server'}` - will filter requests to `/api_server_full?data=1` but not to `/full_api_server?data=1`
+- **whitelist_uri_suffixes** : for value `{'.css'}` - will filter requests to `/style.css` but not to `/style.js`
+- **whitelist_ip_addresses** : for value `{'192.168.99.1'}` - will filter requests coming from any of the listed ips.
+- **whitelist_ua_full** : for value `{'Mozilla/5.0 (compatible; pingbot/2.0; http://www.pingdom.com/)'}` - will filter all requests matching this exact UA.
+- **whitelist_ua_sub** : for value `{'GoogleCloudMonitoring'}` - will filter requests containing the provided string in their UA.
+- **whitelist_hosts** : for value `{'www.example.com'}` - will filter requests coming from the provided host.
 
 ## <a name="advancedBlockingResponse"></a> Advanced Blocking Response
 
-In special cases, (such as XHR post requests) a full Captcha page render might not be an option. In such cases, using the Advanced Blocking Response returns a JSON object continaing all the information needed to render your own Captcha challenge implementation, be it a popup modal, a section on the page, etc. The Advanced Blocking Response occurs when a request contains the _Accept_ header with the value of `application/json`. A sample JSON response appears as follows:
+In special cases, (such as XHR post requests) a full Captcha page render might not be an option. In such cases, using the Advanced Blocking Response returns a JSON object continaing all the information needed to render your own Captcha challenge implementation, be it a popup modal, a section on the page, etc. The Advanced Blocking Response occurs when a request contains the *Accept* header with the value of `application/json`. A sample JSON response appears as follows:
 
 ```javascript
 {
@@ -561,6 +563,7 @@ window._pxOnCaptchaSuccess = function (isValid) {
 For details on how to create a custom Captcha page, refer to the [documentation](https://docs.perimeterx.com/pxconsole/docs/customize-challenge-page)
 
 ## <a name="additional-information"></a> Additional Information
+
 ### URI Delimiters
 
 PerimeterX processes URI paths with general- and sub-delimiters according to RFC 3986. General delimiters (e.g., `?`, `#`) are used to separate parts of the URI. Sub-delimiters (e.g., `$`, `&`) are not used to split the URI as they are considered valid characters in the URI path.
