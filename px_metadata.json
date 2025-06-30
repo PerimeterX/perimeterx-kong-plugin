@@ -1,7 +1,7 @@
 {
-    "module_name" : "KONG plugin",
-    "version": "4.0.1",
-    "spec_version" : "1.0.0",
+    "module_name": "KONG plugin",
+    "version": "4.0.2",
+    "spec_version": "1.0.0",
     "supported_features": [
         "advanced_blocking_response",
         "block_activity",
@@ -35,7 +35,7 @@
         "risk_api",
         "sensitive_routes",
         "sensitive_headers",
-        "user_identifiers"
+        "user_identifiers",
         "vid_extraction"
     ]
 }
