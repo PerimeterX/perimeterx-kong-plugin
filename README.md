@@ -134,7 +134,7 @@ To run the demonstration Docker image:
 
 1. Copy `kong/config/kong.yml` to `kong/config/kong.dev.yml` and adjust it with your PerimeterX app id, cookie secret and auth token.
 
-2. From the root folder execute `./scripts/run-kong.sh  3.4.2`.
+2. From the root folder execute `./scripts/run-kong.sh  3.9.1`.
 
 3. Navigate to <http://127.0.0.1:8000>.
 
