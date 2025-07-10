@@ -22,6 +22,7 @@ return {
         { sensitive_headers = {type = "array", elements = { type = "string" }, default = {'cookie', 'cookies'}} },
         { ip_headers = {type = "array", elements = { type = "string" }, default = {}} },
         { score_header_name = {type = "string", default = 'X-PX-SCORE'} },
+        { score_header_enabled = {type = "boolean", default = false} },
         { sensitive_routes_prefix = {type = "array", elements = { type = "string" }, default = {}} },
         { sensitive_routes_suffix = {type = "array", elements = { type = "string" }, default = {}} },
         { sensitive_routes = {type = "array", elements = { type = "string" }, default = {}} },
